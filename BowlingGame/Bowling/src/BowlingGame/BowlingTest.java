@@ -26,6 +26,9 @@ public class BowlingTest {
 		g.roll(5); //spare
 	}
 
+	private void rollStrike() {
+		g.roll(10);
+	}
 
 	@After
 	public void tearDown() throws Exception {
@@ -64,10 +67,38 @@ public class BowlingTest {
 	
 	@Test
 	public void oneStrike() {
-		g.roll(10);
+		rollStrike();
 		g.roll(3);
 		g.roll(4);
 		rollMany(16,0);
 		assertEquals(24,g.score());
+	}
+	
+	@Test
+	public void perfectGame() {
+		rollMany(12,10);
+		assertEquals(300,g.score());
+	}
+	
+	public void inClassExercise() {
+		g.roll(6);
+		g.roll(2);
+		g.roll(7);
+		g.roll(2);
+		g.roll(3);
+		g.roll(4);
+		g.roll(8);
+		g.roll(2);
+		g.roll(9);
+		g.roll(0);
+		rollStrike();
+		rollStrike();
+		rollStrike();
+		g.roll(6);
+		g.roll(3);
+		g.roll(8);
+		g.roll(2);
+		g.roll(7);
+		assertEquals(153, g.score());
 	}
 }
